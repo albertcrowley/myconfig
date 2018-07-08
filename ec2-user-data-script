@@ -5,3 +5,4 @@ service httpd start
 chkconfig httpd on
 systemctl disable firewalld
 systemctl stop firewalld
+yum install -y telnet emacs
