@@ -2,7 +2,25 @@
 yum install httpd -y  
 yum update -y  
 service httpd start  
+systemctl start httpd
 chkconfig httpd on
 systemctl disable firewalld
 systemctl stop firewalld
 yum install -y telnet emacs
+
+#lets encrypt
+sudo yum install -y epel-release
+sudo yum install -y httpd mod_ssl python-certbot-apache
+service httpd restart  
+
+# interactive
+# certbot --apache -d bwnj.net -d ec2.bwnj.net -d cog.bwnj.net
+#
+# <VirtualHost *:80>
+#   ServerName ec2.bwnj.net
+#   ServerAlias cog.bwnj.net
+# </VirtualHost>
+
+
+
+
