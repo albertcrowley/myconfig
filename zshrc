@@ -68,7 +68,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker zsh-autosuggestions)
+plugins=(git docker zsh-autosuggestions autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# autojump setup
+
+[[ -s /home/`whoami`/.autojump/etc/profile.d/autojump.sh ]] && source /home/`whoami`/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
 
 
 # export DISPLAY=192.168.33.1:0.0
