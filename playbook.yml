@@ -1,0 +1,31 @@
+- hosts: 127.0.0.1
+  gather_facts: yes
+
+
+  tasks:
+
+  - name: install zsh
+    apt:
+      name:
+        - zsh
+	- emacs
+	- htop
+	- curl
+      state: latest
+      sudo: yes
+      when: ansible_os_family == "Debian"
+
+  - name: Install oh-my-zsh
+    shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  - copy:
+      src: bashrc
+      dest: ~/.bashrc
+
+  - copy:
+      src: zshrc
+      dest: ~/.zshrc
+
+
+
+  
