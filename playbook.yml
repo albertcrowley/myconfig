@@ -2,7 +2,7 @@
   gather_facts: yes
 
   vars:
-     - USER_NAME: vagrant
+     - USER_NAME: crowley
 
 
   tasks:
@@ -58,13 +58,11 @@
       creates: autojump
 
   - name: fix python symlink for autojump
-    shell: ln -s `which python3` /usr/bin/python
+    shell: stat /usr/bin/python || ln -s `which python3` /usr/bin/python
     become: true
 
-  - copy:
-      src: bashrc
-      dest: "/home/{{ USER_NAME }}/.bashrc"
-      backup: yes
+  - name: copy in our bashrc settings
+    shell: "echo /home/{{ USER_NAME }}/.bashrc >> /home/{{ USER_NAME }}/.bashrc" 
 
   - copy:
       src: zshrc
