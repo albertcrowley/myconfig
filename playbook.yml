@@ -15,6 +15,7 @@
         - htop
         - curl
         - git
+	- net-tools
       state: latest
     when: ansible_os_family == "Debian"
 
@@ -27,6 +28,7 @@
         - htop
         - curl
         - git
+	- net-tools
       state: latest
     become: true
     when: ansible_os_family == "RedHat"
@@ -57,12 +59,16 @@
     args:
       creates: autojump
 
+  - name: manual autojump unzip if the install didn't work
+    shell: |
+      stat /home/{{ USER_NAME }}/.autojump || tar -xzf dot-autojump-files.tgz -C /home/{{ USER_NAME }}
+  
   - name: fix python symlink for autojump
     shell: stat /usr/bin/python || ln -s `which python3` /usr/bin/python
     become: true
 
   - name: copy in our bashrc settings
-    shell: "echo /home/{{ USER_NAME }}/.bashrc >> /home/{{ USER_NAME }}/.bashrc" 
+    shell: "cat bashrc >> /home/{{ USER_NAME }}/.bashrc" 
 
   - copy:
       src: zshrc

@@ -116,4 +116,7 @@ alias docker="sudo docker"
 LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS     
 
 alias cvsdiff='cvs diff . 2>&1 | grep -v Diffing'
+alias emacs='emacs -nw'
+alias emacs-window='emacs'
 
+export PATH=${PATH}:~/.local/bin
