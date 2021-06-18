@@ -120,3 +120,17 @@ alias emacs='emacs -nw'
 alias emacs-window='emacs'
 
 export PATH=${PATH}:~/.local/bin
+
+
+function zshaddhistory() {
+    emulate -L zsh
+    if [[ $1 = *"ssh www.nitrc.org"* ]] ; then
+        return 1
+    fi
+    if [[ $1 = *"ssh centos@www.nitrc.org"* ]] ; then
+        return 1
+    fi
+    if [[ $1 = *"ssh crowley@www.nitrc.org"* ]] ; then
+        return 1
+    fi
+}
